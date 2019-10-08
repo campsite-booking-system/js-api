@@ -2,7 +2,7 @@ import { Config } from '../types';
 declare class API {
     private baseUrl;
     constructor(userConfig?: Config);
-    login(email: string, password: string): Promise<{
+    login(uid: string, password: string): Promise<{
         token: string;
     }>;
 }

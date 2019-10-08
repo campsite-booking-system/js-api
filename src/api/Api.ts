@@ -23,8 +23,8 @@ class API {
     this.baseUrl = `${baseUrl}/${config.version}`;
   }
 
-  public async login(email: string, password: string) {
-    return login(this.baseUrl, email, password);
+  public async login(uid: string, password: string) {
+    return login(this.baseUrl, uid, password);
   }
 }
 
