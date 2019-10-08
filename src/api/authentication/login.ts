@@ -4,6 +4,9 @@ async function login(baseUrl: string, email: string, password: string): Promise<
   const response = await fetch(url.href, {
     method: 'POST',
     body: JSON.stringify({ email, password }),
+    headers: {
+      'Content-Type': 'application/json',
+    },
   });
 
   if (!response.ok) {
