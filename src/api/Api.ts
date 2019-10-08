@@ -3,9 +3,9 @@ import { Config } from '../types';
 import { login } from './authentication';
 
 enum baseUrls {
-  'local' = 'http://api.veepee.local',
-  'development' = 'https://api.dev.veepee.com',
-  'production' = 'https://api.veepee.com',
+  'local' = 'http://api.vulpee.local',
+  'development' = 'https://api.dev.vulpee.com',
+  'production' = 'https://api.vulpee.com',
 }
 
 const defaultConfig: Config = {
