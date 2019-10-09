@@ -1,6 +1,6 @@
 import { Config } from '../types';
 
-import { login, forgotPassword, resetPassword } from './authentication';
+import { login, verify, forgotPassword, resetPassword } from './authentication';
 
 enum baseUrls {
   'local' = 'http://api.vulpee.local',
@@ -17,12 +17,14 @@ export interface APIInterface {
   getBaseUrl(): string;
 
   login(uid: string, password: string): Promise<{ token: string }>;
+  verify(): Promise<void>;
   forgotPassword(uid: string): Promise<void>;
   resetPassword(token: string, password: string, passwordConfirmation: string): Promise<void>;
 }
 
 class API implements APIInterface {
   public login = login;
+  public verify = verify;
   public forgotPassword = forgotPassword;
   public resetPassword = resetPassword;
 
