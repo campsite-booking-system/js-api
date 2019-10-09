@@ -1,6 +1,6 @@
 import { Config } from '../types';
 
-import { login } from './authentication';
+import { login, forgotPassword, resetPassword } from './authentication';
 
 enum baseUrls {
   'local' = 'http://api.vulpee.local',
@@ -13,7 +13,19 @@ const defaultConfig: Config = {
   version: '1.0',
 };
 
-class API {
+export interface APIInterface {
+  getBaseUrl(): string;
+
+  login(uid: string, password: string): Promise<{ token: string }>;
+  forgotPassword(uid: string): Promise<void>;
+  resetPassword(token: string, password: string, passwordConfirmation: string): Promise<void>;
+}
+
+class API implements APIInterface {
+  public login = login;
+  public forgotPassword = forgotPassword;
+  public resetPassword = resetPassword;
+
   private baseUrl: string;
 
   constructor(userConfig?: Config) {
@@ -23,8 +35,8 @@ class API {
     this.baseUrl = `${baseUrl}/${config.version}`;
   }
 
-  public async login(uid: string, password: string) {
-    return login(this.baseUrl, uid, password);
+  public getBaseUrl() {
+    return this.baseUrl;
   }
 }
 
