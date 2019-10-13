@@ -1,5 +1,7 @@
+import { Environment } from '.';
+
 interface Config {
-  environment?: 'local' | 'development' | 'production';
+  environment?: Environment;
   version?: '1.0';
   token?: string;
 }
