@@ -12,9 +12,7 @@ async function forgotPassword(this: API, uid: string): Promise<void> {
   });
 
   if (!response.ok) {
-    const data = await response.json();
-
-    throw data;
+    throw response;
   }
 }
 

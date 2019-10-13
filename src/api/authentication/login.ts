@@ -11,11 +11,11 @@ async function login(this: API, uid: string, password: string): Promise<{ token:
     },
   });
 
-  const data = await response.json();
-
   if (!response.ok) {
-    throw data;
+    throw response;
   }
+
+  const data = await response.json();
 
   return data;
 }

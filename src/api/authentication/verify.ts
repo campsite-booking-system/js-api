@@ -12,9 +12,7 @@ async function verify(this: API): Promise<void> {
   });
 
   if (!response.ok) {
-    const data = await response.json();
-
-    throw data;
+    throw response;
   }
 }
 
