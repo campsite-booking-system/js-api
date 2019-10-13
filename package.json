@@ -25,7 +25,8 @@
   "scripts": {
     "build": "yarn clean && tsc",
     "clean": "rimraf lib",
-    "lint": "tslint 'src/**/*.{ts}'"
+    "lint": "tslint 'src/**/*.{ts}'",
+    "prepare": "docker run --rm -v $(pwd):/mnt/app -w /mnt/app node:lts-slim yarn build"
   },
   "browserslist": [
     ">0.2%",
@@ -35,7 +36,7 @@
   ],
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged && docker run --rm -v $(pwd):/mnt/app -w /mnt/app node:lts-slim yarn build && git add lib/"
+      "pre-commit": "lint-staged"
     }
   },
   "lint-staged": {
