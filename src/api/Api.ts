@@ -29,6 +29,7 @@ class API implements APIInterface {
   public resetPassword = resetPassword;
 
   private baseUrl: string;
+  private token: string;
 
   constructor(userConfig?: Config) {
     const config = { ...defaultConfig, ...userConfig };
@@ -39,6 +40,14 @@ class API implements APIInterface {
 
   public getBaseUrl() {
     return this.baseUrl;
+  }
+
+  public setToken(token: string) {
+    this.token = token;
+  }
+
+  public getToken() {
+    return this.token;
   }
 }
 
