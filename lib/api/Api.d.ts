@@ -15,7 +15,10 @@ declare class API implements APIInterface {
     forgotPassword: typeof forgotPassword;
     resetPassword: typeof resetPassword;
     private baseUrl;
+    private token;
     constructor(userConfig?: Config);
     getBaseUrl(): string;
+    setToken(token: string): void;
+    getToken(): string;
 }
 export default API;
