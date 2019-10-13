@@ -1,7 +1,7 @@
 {
   "name": "@vulpee/js-api",
   "description": "A Javascript library with the different API's for Vulpee's services",
-  "version": "0.2.1",
+  "version": "0.4.0",
   "main": "lib/index",
   "module": "lib/index",
   "repository": {
