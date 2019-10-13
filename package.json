@@ -29,6 +29,7 @@
     "build": "npm run clean && tsc",
     "clean": "rimraf lib",
     "lint": "tslint 'src/**/*.{ts}'",
+    "test": "jest",
     "prepare": "docker run --rm -v $(pwd):/mnt/app -w /mnt/app node:lts-slim npm run build"
   },
   "browserslist": [
@@ -39,7 +40,7 @@
   ],
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged"
+      "pre-commit": "lint-staged && npm run test"
     }
   },
   "lint-staged": {
@@ -48,5 +49,10 @@
       "prettier --write",
       "git add"
     ]
+  },
+  "dependencies": {
+    "@types/jest": "^24.0.18",
+    "jest": "^24.9.0",
+    "ts-jest": "^24.1.0"
   }
 }
