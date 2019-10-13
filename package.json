@@ -4,6 +4,9 @@
   "version": "0.3.2",
   "main": "lib/index",
   "module": "lib/index",
+  "files": [
+    "lib"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/vulpee/js-api"
@@ -35,7 +38,8 @@
   ],
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged && docker run --rm -v $(pwd):/mnt/app -w /mnt/app node:lts-slim yarn build && git add lib/"
+      "pre-commit": "lint-staged",
+      "prepare": "docker run --rm -v $(pwd):/mnt/app -w /mnt/app node:lts-slim yarn build"
     }
   },
   "lint-staged": {
