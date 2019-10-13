@@ -29,7 +29,7 @@
     "build": "yarn clean && tsc",
     "clean": "rimraf lib",
     "lint": "tslint 'src/**/*.{ts}'",
-    "prepare": "docker run --rm -v $(pwd):/mnt/app -w /mnt/app node:lts-slim yarn build"
+    "prepare": "docker run --rm -v $(pwd):/mnt/app -w /mnt/app node:lts-slim npm run build"
   },
   "browserslist": [
     ">0.2%",
