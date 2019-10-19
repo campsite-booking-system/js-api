@@ -1,32 +1,34 @@
-name: CI
+name: Lint and Test
 
 on:
   pull_request:
     branches:
-    - master
+      - master
 
 jobs:
+  setup:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Setup Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: '10.x'
+
+  install:
+    needs: setup
+    steps:
+      - name: Install Dependencies
+        run: npm ci
+
   lint:
-    runs-on: ubuntu-latest
+    needs: [setup, install]
     steps:
-    - uses: actions/checkout@v1
-    - name: Setup Node
-      uses: actions/setup-node@v1
-      with:
-        node-version: '10.x'
-    - name: Install Dependencies
-      run: npm install
-    - name: Lint
-      run: npm run lint
+      - name: Lint
+        run: npm run lint
+
   test:
-    runs-on: ubuntu-latest
+    needs: [setup, install, lint]
     steps:
-    - uses: actions/checkout@v1
-    - name: Setup Node
-      uses: actions/setup-node@v1
-      with:
-        node-version: '10.x'
-    - name: Install Dependencies
-      run: npm install
-    - name: Test
-      run: npm test
+      - name: Lint
+        run: npm test
