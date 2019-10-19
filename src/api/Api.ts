@@ -1,6 +1,8 @@
-import { Config } from '../types';
+import { Config, Establishment, User } from '../types';
 
 import * as authentication from './authentication';
+import * as establishment from './establishment';
+import * as user from './user';
 
 enum baseUrls {
   'local' = 'http://api.vulpee.local',
@@ -22,6 +24,11 @@ export interface APIInterface {
   verify(): Promise<void>;
   forgotPassword(uid: string): Promise<void>;
   resetPassword(token: string, password: string, passwordConfirmation: string): Promise<void>;
+
+  getEstablishment(id: number): Promise<Establishment>;
+  getEstablishments(): Promise<Establishment[]>;
+
+  getMe(): Promise<User>;
 }
 
 class API implements APIInterface {
@@ -30,6 +37,11 @@ class API implements APIInterface {
   public verify = authentication.verify;
   public forgotPassword = authentication.forgotPassword;
   public resetPassword = authentication.resetPassword;
+
+  public getEstablishment = establishment.getEstablishment;
+  public getEstablishments = establishment.getEstablishments;
+
+  public getMe = user.getMe;
 
   private baseUrl: string;
   private token?: string;
