@@ -1,16 +1,61 @@
 import API from '../api';
 
-test('Should default to production url', () => {
-  const api = new API();
+describe('Vulpee API', () => {
+  beforeEach(() => {
+    fetchMock.resetMocks();
+  });
 
-  expect(api.getBaseUrl()).toBe('https://api.vulpee.com/1.0');
-});
+  it("Should't have a token by default", () => {
+    const api = new API();
 
-test('Should have configurable base url', () => {
-  const environment = 'local';
-  const version = '1.0';
+    expect(api.hasToken()).toBeFalsy();
+  });
 
-  const api = new API({ environment, version });
+  it('Should set token', () => {
+    const api = new API();
 
-  expect(api.getBaseUrl()).toBe('http://api.vulpee.local/1.0');
+    api.setToken('new-authentication-token');
+
+    expect(api.hasToken()).toBeTruthy();
+  });
+
+  it('Should make an API call to', async () => {
+    fetchMock.mockResponseOnce(JSON.stringify({}));
+
+    const api = new API();
+    await api.getEstablishments();
+
+    expect(fetchMock.mock.calls.length).toEqual(1);
+  });
+
+  it('Should have Content-Type Header', async () => {
+    fetchMock.mockResponseOnce(JSON.stringify({}));
+
+    const api = new API();
+    await api.getEstablishments();
+
+    const response: Response = fetchMock.mock.calls[0][1];
+
+    expect(response.headers.has('Content-Type')).toBeTruthy();
+    expect(response.headers.get('Content-Type')).toBe('application/json');
+  });
+
+  it('Should have Authorization Header', async () => {
+    fetchMock.mockResponse(JSON.stringify({}));
+
+    const api = new API();
+    await api.getEstablishments();
+
+    const response: Response = fetchMock.mock.calls[0][1];
+
+    expect(response.headers.has('Authorization')).toBeFalsy();
+
+    api.setToken('authentication-token');
+    await api.getEstablishments();
+
+    const newResponse: Response = fetchMock.mock.calls[1][1];
+
+    expect(newResponse.headers.has('Authorization')).toBeTruthy();
+    expect(newResponse.headers.get('Authorization')).toBe('Bearer authentication-token');
+  });
 });
