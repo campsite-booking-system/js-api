@@ -18,6 +18,7 @@ export interface APIInterface {
   hasToken(): boolean;
 
   login(uid: string, password: string): Promise<{ token: string }>;
+  logout(): Promise<void>;
   verify(): Promise<void>;
   forgotPassword(uid: string): Promise<void>;
   resetPassword(token: string, password: string, passwordConfirmation: string): Promise<void>;
@@ -25,6 +26,7 @@ export interface APIInterface {
 
 class API implements APIInterface {
   public login = authentication.login;
+  public logout = authentication.logout;
   public verify = authentication.verify;
   public forgotPassword = authentication.forgotPassword;
   public resetPassword = authentication.resetPassword;
