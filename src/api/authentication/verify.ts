@@ -5,10 +5,7 @@ async function verify(this: API): Promise<void> {
 
   const response = await fetch(url.href, {
     method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${this.getToken()}`,
-    },
+    headers: this.getHeaders(),
   });
 
   if (!response.ok) {

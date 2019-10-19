@@ -6,9 +6,7 @@ async function forgotPassword(this: API, uid: string): Promise<void> {
   const response = await fetch(url.href, {
     method: 'POST',
     body: JSON.stringify({ uid }),
-    headers: {
-      'Content-Type': 'application/json',
-    },
+    headers: this.getHeaders(),
   });
 
   if (!response.ok) {

@@ -1,6 +1,6 @@
 import { Config } from '../types';
 
-import { login, verify, forgotPassword, resetPassword } from './authentication';
+import * as authentication from './authentication';
 
 enum baseUrls {
   'local' = 'http://api.vulpee.local',
@@ -14,7 +14,8 @@ const defaultConfig: Config = {
 };
 
 export interface APIInterface {
-  getBaseUrl(): string;
+  setToken(token?: string): this;
+  hasToken(): boolean;
 
   login(uid: string, password: string): Promise<{ token: string }>;
   verify(): Promise<void>;
@@ -23,13 +24,13 @@ export interface APIInterface {
 }
 
 class API implements APIInterface {
-  public login = login;
-  public verify = verify;
-  public forgotPassword = forgotPassword;
-  public resetPassword = resetPassword;
+  public login = authentication.login;
+  public verify = authentication.verify;
+  public forgotPassword = authentication.forgotPassword;
+  public resetPassword = authentication.resetPassword;
 
   private baseUrl: string;
-  private token: string;
+  private token?: string;
 
   constructor(userConfig?: Config) {
     const config = { ...defaultConfig, ...userConfig };
@@ -38,16 +39,34 @@ class API implements APIInterface {
     this.baseUrl = `${baseUrl}/${config.version}`;
   }
 
-  public getBaseUrl() {
+  public setToken(token?: string): this {
+    this.token = token;
+
+    return this;
+  }
+
+  public hasToken(): boolean {
+    return this.token !== undefined;
+  }
+
+  protected getBaseUrl(): string {
     return this.baseUrl;
   }
 
-  public setToken(token: string) {
-    this.token = token;
+  protected getToken(): string | undefined {
+    return this.token;
   }
 
-  public getToken() {
-    return this.token;
+  protected getHeaders(): Headers {
+    const headers = new Headers({
+      'Content-Type': 'application/json',
+    });
+
+    if (this.hasToken()) {
+      headers.set('Authorization', `Bearer ${this.getToken()}`);
+    }
+
+    return headers;
   }
 }
 

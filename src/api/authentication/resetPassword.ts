@@ -11,9 +11,7 @@ async function resetPassword(
   const response = await fetch(url.href, {
     method: 'POST',
     body: JSON.stringify({ token, password, passwordConfirmation }),
-    headers: {
-      'Content-Type': 'application/json',
-    },
+    headers: this.getHeaders(),
   });
 
   if (!response.ok) {
