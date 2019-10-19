@@ -28,9 +28,9 @@
   "scripts": {
     "build": "npm run clean && tsc",
     "clean": "rimraf lib",
-    "lint": "tslint 'src/**/*.{ts}'",
+    "lint": "tslint 'src/**/*.{ts}' && prettier --check 'src/**/*.ts'",
     "test": "jest",
-    "prepare": "docker run --rm -v $(pwd):/mnt/app -w /mnt/app node:lts-slim npm run build"
+    "prepublishOnly": "npm run build"
   },
   "browserslist": [
     ">0.2%",
