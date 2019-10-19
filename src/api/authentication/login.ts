@@ -6,9 +6,7 @@ async function login(this: API, uid: string, password: string): Promise<{ token:
   const response = await fetch(url.href, {
     method: 'POST',
     body: JSON.stringify({ uid, password }),
-    headers: {
-      'Content-Type': 'application/json',
-    },
+    headers: this.getHeaders(),
   });
 
   if (!response.ok) {
