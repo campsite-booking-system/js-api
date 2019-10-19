@@ -19,6 +19,6 @@ jobs:
       - name: Install Dependencies
         run: npm ci
       - name: Publish
-        run: npm publish
+        run: npm publish --allow-same-version
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH}}
