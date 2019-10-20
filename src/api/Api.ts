@@ -6,7 +6,7 @@ import * as user from './user';
 
 enum baseUrls {
   'local' = 'http://api.vulpee.local',
-  'development' = 'https://api.dev.vulpee.com',
+  'development' = 'https://api.vulpee.bramvanosta.dev',
   'production' = 'https://api.vulpee.com',
 }
 
