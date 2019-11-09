@@ -1,10 +1,10 @@
 enum AccommodationCharacteristics {
   People = 'people',
   Chambers = 'chambers',
-  singleBeds = 'single_beds',
-  doubleBeds = 'double_beds',
-  bathrooms = 'bathrooms',
-  squareMeters = 'square_meters',
+  SingleBeds = 'single_beds',
+  DoubleBeds = 'double_beds',
+  Bathrooms = 'bathrooms',
+  SquareMeters = 'square_meters',
 }
 
 export default AccommodationCharacteristics;
