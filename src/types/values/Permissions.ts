@@ -1,4 +1,4 @@
-export enum PermissionTypes {
+enum Permissions {
   ViewEstablishment = 'view_establishment',
   CreateEstablishment = 'create_establishment',
   EditEstablishment = 'edit_establishment',
@@ -15,16 +15,4 @@ export enum PermissionTypes {
   DeleteRental = 'delete_rental',
 }
 
-export type PermissionType =
-  | PermissionTypes.ViewEstablishment
-  | PermissionTypes.CreateEstablishment
-  | PermissionTypes.EditEstablishment
-  | PermissionTypes.DeleteEstablishment
-  | PermissionTypes.ViewEstablishmentToken
-  | PermissionTypes.CreateEstablishmentToken
-  | PermissionTypes.EditEstablishmentToken
-  | PermissionTypes.DeleteEstablishmentToken
-  | PermissionTypes.ViewRental
-  | PermissionTypes.CreateRental
-  | PermissionTypes.EditRental
-  | PermissionTypes.DeleteRental;
+export default Permissions;

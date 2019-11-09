@@ -9,7 +9,8 @@
     "declaration": true,
     "skipLibCheck": true,
     "sourceMap": true,
-    "typeRoots": ["index.d.ts", "node_modules/@types"]
+    "typeRoots": ["index.d.ts", "node_modules/@types"],
+    "declarationMap": true
   },
   "include": ["src/**/*.ts"],
   "files": ["src/index.ts"],

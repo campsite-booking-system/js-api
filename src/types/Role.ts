@@ -1,8 +1,8 @@
-import { PermissionType, RoleType } from '.';
+import { Roles, Permissions } from './values';
 
-interface User {
-  type: RoleType;
-  permissions?: PermissionType[];
+interface Role {
+  type: Roles;
+  permissions?: Permissions[];
 }
 
-export default User;
+export default Role;

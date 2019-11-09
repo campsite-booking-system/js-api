@@ -1,4 +1,6 @@
-import { Role } from '.';
+import { AccommodationCategory, Client, Role, RentalCategory, User } from '.';
+import { PaymentMethods } from './values';
+import EstablishmentToken from './EstablishmentToken';
 
 interface Establishment {
   id: number;
@@ -9,6 +11,12 @@ interface Establishment {
   zipCode: string;
   city: string;
   country: string;
+  accommodations?: AccommodationCategory[];
+  rentals?: RentalCategory[];
+  clients?: Client[];
+  paymentMethods?: PaymentMethods[];
+  tokens?: EstablishmentToken[];
+  users?: User[];
   role?: Role;
   updatedAt: string;
 }
