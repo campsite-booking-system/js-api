@@ -4,7 +4,7 @@ interface Booking {
   id: number;
   startDate: string;
   endDate: string;
-  client: Client;
+  client?: Client;
   accommodation?: Accommodation;
   rentals?: Rental[];
   payments?: Payment[];
