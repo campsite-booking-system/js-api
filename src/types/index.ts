@@ -1,5 +1,6 @@
 export { default as Accommodation } from './Accommodation';
 export { default as AccommodationCategory } from './AccommodationCategory';
+export { default as Booking } from './Booking';
 export { default as Client } from './Client';
 export { default as Config } from './Config';
 export { default as Environment } from './Environment';
